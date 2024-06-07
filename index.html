@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="PLACEHOLDER FOR DESCRIPTION">
+  <meta name="keywords" content="KEYWORD, KEYWORD, KEYWORD">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HouseCrafter: Lifting Floorplans to 3D Scenes with 2D Diffusion Models</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <style>
+    .center-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* This will make it take the full height of the viewport */
+    }
+
+    .sketchfab-embed-wrapper {
+        width: 80%; /* Adjust this value to change the size */
+        height: 80%; /* Adjust this value to change the size */
+    }
+</style>
+
+</head>
+
+
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">HouseCrafter: Lifting Floorplans to 3D Scenes with 2D Diffusion Models</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://placeholder.com">Trung-Hieu Nguyen</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://placeholder.com">Yiwen Chen</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://placeholder.com">Varun Jampani</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://placeholder.com">Vikram Voleti</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://placeholder.com">Huaizu Jiang</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Northeastern University,</span>
+            <span class="author-block"><sup>2</sup>Stability AI</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- TODO: add arxiv link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/placeholder" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/placeholder"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/placeholder"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/placeholder"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block"> -->
+                <!-- <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- todo: place the interactive mesh or the video here -->
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video> -->
+      <div class="sketchfab-embed-wrapper"> <iframe title="644dba87-0d65-4897-912c-38185791b3c2" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share width="720" height="480" src="https://sketchfab.com/models/e00f4eade9f64255a27d6af8b4f69a34/embed"> </iframe> </div>
+        <span class="dnerf">HouseCrafter</span> automatically converts a floorplan to a 3D house.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>We introduce HouseCrafter, an novel approach that can lift a floorplan into a complete large 3D indoor scene (\eg, a house).</p>
+          <p>Our key insight is to adapt a 2D diffusion model, which is trained on web-scale images, to generate consistent multi-view color (RGB) and depth (D) images across different locations of the scene.
+          Specifically, the RGB-D images are generated autoregressively in a batch-wise manner along sampled locations based on the floorplan, where previously generated images are used as condition to the diffusion model to produce images at nearby locations.
+          The global floorplan and attention design in the diffusion model ensures the consistency of the generated images, from which a 3D scene can be reconstructed.
+          </p>
+          <p>Through extensive evaluation on the 3D-Front dataset, we demonstrate that HouseCraft can generate high-quality house-scale 3D scenes.
+            Ablation studies also validate the effectiveness of different design choices. 
+            We will release our code and model weights.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Motivation. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
+          <p>Do we need explain the motivation of using floorplan here?.</p>
+          </p>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!--/ motivation. -->
+
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">PLACEHOLDER: We can put (a)an overview diagram or (b)a diagram of the diffusion model here, or (c)explainatory video. I personally want to put (a) and (b) here</h2>
+        <!-- <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div> -->
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <div class="sketchfab-embed-wrapper"> <iframe title="6b56575f-a746-4062-8296-b566d5de7b60" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4f00891b95604858a96ea87cc43a5ee2/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/6b56575f-a746-4062-8296-b566d5de7b60-4f00891b95604858a96ea87cc43a5ee2?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> 6b56575f-a746-4062-8296-b566d5de7b60 </a> by <a href="https://sketchfab.com/yiwenchen?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> yiwenchen </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+          <!-- <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="https://sketchfab.com/models/fff7cabdbf2a4958ba3033d95320a6c9/embed"
+                    type="video/mp4">
+          </video> -->
+        </div>
+        <div class="item item-chair-tp">
+          <div class="sketchfab-embed-wrapper"> <iframe title="6b56575f-a746-4062-8296-b566d5de7b60" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4f00891b95604858a96ea87cc43a5ee2/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/6b56575f-a746-4062-8296-b566d5de7b60-4f00891b95604858a96ea87cc43a5ee2?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> 6b56575f-a746-4062-8296-b566d5de7b60 </a> by <a href="https://sketchfab.com/yiwenchen?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> yiwenchen </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+          <!-- <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="https://sketchfab.com/models/fff7cabdbf2a4958ba3033d95320a6c9/embed"
+                    type="video/mp4">
+          </video> -->
+        </div>
+        <div class="item item-shiba">
+          <div class="sketchfab-embed-wrapper"> <iframe title="6b56575f-a746-4062-8296-b566d5de7b60" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4f00891b95604858a96ea87cc43a5ee2/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/6b56575f-a746-4062-8296-b566d5de7b60-4f00891b95604858a96ea87cc43a5ee2?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> 6b56575f-a746-4062-8296-b566d5de7b60 </a> by <a href="https://sketchfab.com/yiwenchen?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> yiwenchen </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+          <!-- <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="https://sketchfab.com/models/fff7cabdbf2a4958ba3033d95320a6c9/embed"
+                    type="video/mp4">
+          </video> -->
+        </div>
+        <div class="item item-fullbody">
+          <div class="sketchfab-embed-wrapper"> <iframe title="6b56575f-a746-4062-8296-b566d5de7b60" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4f00891b95604858a96ea87cc43a5ee2/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/6b56575f-a746-4062-8296-b566d5de7b60-4f00891b95604858a96ea87cc43a5ee2?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> 6b56575f-a746-4062-8296-b566d5de7b60 </a> by <a href="https://sketchfab.com/yiwenchen?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> yiwenchen </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+          <!-- <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="https://sketchfab.com/models/fff7cabdbf2a4958ba3033d95320a6c9/embed"
+                    type="video/mp4">
+          </video> -->
+        </div>
+        <div class="item item-blueshirt">
+          <div class="sketchfab-embed-wrapper"> <iframe title="6b56575f-a746-4062-8296-b566d5de7b60" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4f00891b95604858a96ea87cc43a5ee2/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/6b56575f-a746-4062-8296-b566d5de7b60-4f00891b95604858a96ea87cc43a5ee2?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> 6b56575f-a746-4062-8296-b566d5de7b60 </a> by <a href="https://sketchfab.com/yiwenchen?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> yiwenchen </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+          <!-- <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="https://sketchfab.com/models/fff7cabdbf2a4958ba3033d95320a6c9/embed"
+                    type="video/mp4">
+          </video> -->
+        </div>
+        <div class="item item-mask">
+          <div class="sketchfab-embed-wrapper"> <iframe title="6b56575f-a746-4062-8296-b566d5de7b60" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4f00891b95604858a96ea87cc43a5ee2/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/6b56575f-a746-4062-8296-b566d5de7b60-4f00891b95604858a96ea87cc43a5ee2?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> 6b56575f-a746-4062-8296-b566d5de7b60 </a> by <a href="https://sketchfab.com/yiwenchen?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> yiwenchen </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+          <!-- <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="https://sketchfab.com/models/fff7cabdbf2a4958ba3033d95320a6c9/embed"
+                    type="video/mp4">
+          </video> -->
+        </div>
+        <div class="item item-coffee">
+          <div class="sketchfab-embed-wrapper"> <iframe title="6b56575f-a746-4062-8296-b566d5de7b60" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4f00891b95604858a96ea87cc43a5ee2/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/6b56575f-a746-4062-8296-b566d5de7b60-4f00891b95604858a96ea87cc43a5ee2?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> 6b56575f-a746-4062-8296-b566d5de7b60 </a> by <a href="https://sketchfab.com/yiwenchen?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> yiwenchen </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+          <!-- <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="https://sketchfab.com/models/fff7cabdbf2a4958ba3033d95320a6c9/embed"
+                    type="video/mp4">
+          </video> -->
+        </div>
+        <div class="item item-toby">
+          <div class="sketchfab-embed-wrapper"> <iframe title="6b56575f-a746-4062-8296-b566d5de7b60" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4f00891b95604858a96ea87cc43a5ee2/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/6b56575f-a746-4062-8296-b566d5de7b60-4f00891b95604858a96ea87cc43a5ee2?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> 6b56575f-a746-4062-8296-b566d5de7b60 </a> by <a href="https://sketchfab.com/yiwenchen?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> yiwenchen </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=4f00891b95604858a96ea87cc43a5ee2" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+          <!-- <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="https://sketchfab.com/models/fff7cabdbf2a4958ba3033d95320a6c9/embed"
+                    type="video/mp4">
+          </video> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">In-scene Rendering</h2>
+          <p>
+            The video of the virtual walkthrough
+          </p>
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/placeholder.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-3">Geometry</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              Render the mesh without texture, or the animated small person walking in the scene, or the cube falling animation
+            </p>
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/placeholder.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{TBD,
+  author    = {TBD},
+  title     = {HouseCrafter: Lifting Floorplans to 3D Scenes with 2D Diffusion Models},
+  journal   = {TBD},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfies</a> for the website template.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
